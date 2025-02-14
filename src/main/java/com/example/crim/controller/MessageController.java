@@ -5,6 +5,7 @@ import com.example.crim.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -29,14 +30,14 @@ public class MessageController {
                 .body(messageService.sendChannelMessage(senderId, channelId, content));
     }
 
-    @GetMapping("/channel/{channelId}")
-    public ResponseEntity<List<Message>> getChannelMessages(@PathVariable Long channelId) {
-        return ResponseEntity.ok(messageService.getChannelMessages(channelId));
-    }
-
     @GetMapping("/private")
     public ResponseEntity<List<Message>> getPrivateMessages(@RequestParam Long user1Id,
                                                             @RequestParam Long user2Id) {
         return ResponseEntity.ok(messageService.getPrivateMessages(user1Id, user2Id));
+    }
+
+    @GetMapping("/channel/{channelId}")
+    public ResponseEntity<List<Message>> getChannelMessages(@PathVariable Long channelId) {
+        return ResponseEntity.ok(messageService.getChannelMessages(channelId));
     }
 }

@@ -20,7 +20,6 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    // Role can be ADMIN or USER
     @Column(nullable = false)
     private String role;
 

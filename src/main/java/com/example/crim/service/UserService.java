@@ -18,13 +18,11 @@ public class UserService {
     @Autowired
     private ChannelRepository channelRepository;
 
-    // Register a new user (role is set to USER)
     public User registerUser(User user) {
         user.setRole("USER");
         return userRepository.save(user);
     }
 
-    // Simple login: check username and password (no tokens)
     public Optional<User> loginUser(String username, String password) {
         return userRepository.findByUsernameContaining(username)
                 .stream()

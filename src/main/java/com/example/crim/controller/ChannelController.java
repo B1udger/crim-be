@@ -5,6 +5,7 @@ import com.example.crim.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -52,13 +53,11 @@ public class ChannelController {
         return ResponseEntity.ok(channelService.setAdmin(channelId, memberId, requesterId));
     }
 
-    @GetMapping
-    public ResponseEntity<List<Channel>> getAllChannels() {
-        return ResponseEntity.ok(channelService.getAllChannels());
-    }
 
-    @GetMapping("/member/{userId}")
-    public ResponseEntity<List<Channel>> getChannelsByMember(@PathVariable Long userId) {
-        return ResponseEntity.ok(channelService.getAllChannelsByMember(userId));
+    @PutMapping("/{channelId}/rename")
+    public ResponseEntity<Channel> renameChannel(@PathVariable Long channelId,
+                                                 @RequestParam String newName,
+                                                 @RequestParam Long requesterId) {
+        return ResponseEntity.ok(channelService.updateChannelName(channelId, newName, requesterId));
     }
 }
