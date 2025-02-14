@@ -15,7 +15,6 @@ public class Channel {
     @Column(nullable = false)
     private String name;
 
-    // The channel owner (creator)
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
@@ -44,7 +43,6 @@ public class Channel {
     public Channel(String name, User owner) {
         this.name = name;
         this.owner = owner;
-        // Automatically add the owner as a member
         this.members.add(owner);
     }
 

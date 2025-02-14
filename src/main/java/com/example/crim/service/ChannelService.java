@@ -21,8 +21,8 @@ public class ChannelService {
         User owner = userRepository.findById(ownerId)
                 .orElseThrow(() -> new RuntimeException("Owner not found"));
         Channel channel = new Channel(name, owner);
-        channel.getMembers().add(owner); // Owner is automatically a member
-        channel.getAdmins().add(owner);  // Owner is automatically an admin
+        channel.getMembers().add(owner);
+        channel.getAdmins().add(owner);
         return channelRepository.save(channel);
     }
 
