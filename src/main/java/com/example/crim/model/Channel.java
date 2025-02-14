@@ -7,6 +7,7 @@ import java.util.Set;
 @Entity
 @Table(name = "channels")
 public class Channel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -14,7 +15,7 @@ public class Channel {
     @Column(nullable = false)
     private String name;
 
-    // The creator becomes the owner of the channel
+    // The channel owner (creator)
     @ManyToOne
     @JoinColumn(name = "owner_id", nullable = false)
     private User owner;
@@ -43,21 +44,26 @@ public class Channel {
     public Channel(String name, User owner) {
         this.name = name;
         this.owner = owner;
-        // Owner is automatically a member
+        // Automatically add the owner as a member
         this.members.add(owner);
     }
 
-    // Getters and setters
+    // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
+
     public User getOwner() { return owner; }
     public void setOwner(User owner) { this.owner = owner; }
+
     public Set<User> getAdmins() { return admins; }
     public void setAdmins(Set<User> admins) { this.admins = admins; }
+
     public Set<User> getMembers() { return members; }
     public void setMembers(Set<User> members) { this.members = members; }
+
     public boolean isDeleted() { return deleted; }
     public void setDeleted(boolean deleted) { this.deleted = deleted; }
 }

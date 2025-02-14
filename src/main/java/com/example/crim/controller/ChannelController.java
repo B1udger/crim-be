@@ -26,7 +26,7 @@ public class ChannelController {
         return ResponseEntity.ok(channelService.updateChannelName(channelId, newName, requesterId));
     }
 
-    @DeleteMapping("/{channelId}")
+    @DeleteMapping("/{channelId}/")
     public ResponseEntity<Channel> deleteChannel(@PathVariable Long channelId,
                                                  @RequestParam Long requesterId) {
         return ResponseEntity.ok(channelService.deleteChannel(channelId, requesterId));
